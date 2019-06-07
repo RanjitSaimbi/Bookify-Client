@@ -1,13 +1,11 @@
 import React from "react";
-import Navbar from "./Navbar";
 import styles from "../styles/Container.module.css";
+import Navbar from "./Navbar";
 
-function Container() {
-  return (
-    <div className={styles.container}>
-      <Navbar />
-    </div>
-  );
-}
+const Container = () => (
+  <div className={styles.container}>
+    <Navbar />
+  </div>
+);
 
 export default Container;

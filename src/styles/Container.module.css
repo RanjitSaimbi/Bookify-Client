@@ -3,5 +3,4 @@
   width: 100vw;
   display: grid;
   grid-template-rows: 10% 40% auto;
-  grid-gap: 1em;
 }
