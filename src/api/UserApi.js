@@ -23,7 +23,7 @@ class UserAPI {
   static validate() {
     const token = localStorage.getItem("token");
     return fetch(this.validateUrl, {
-      headers: { Authorization: token }
+      headers: { token: token }
     }).then(resp => resp.json());
   }
 }

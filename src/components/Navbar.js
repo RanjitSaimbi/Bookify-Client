@@ -1,14 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarNav,
-  MDBNavItem,
-  MDBNavLink
-} from "mdbreact";
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem } from "mdbreact";
 
-const Navbar = () => (
+const Navbar = props => (
   <MDBNavbar color="indigo" dark expand="md">
     <MDBNavbarBrand>
       <strong className="white-text">Navbar</strong>
@@ -21,9 +15,13 @@ const Navbar = () => (
       </MDBNavItem>
       &nbsp; &nbsp; &nbsp;
       <MDBNavItem>
-        <Link to="/login">
-          <h6>Sign Up </h6>
-        </Link>
+        {props.username ? (
+          <h6 onClick={props.signout}>Log out </h6>
+        ) : (
+          <Link to="/signup">
+            <h6>Sign Up </h6>
+          </Link>
+        )}
       </MDBNavItem>
       &nbsp; &nbsp; &nbsp;
       <MDBNavItem>
