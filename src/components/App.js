@@ -38,7 +38,14 @@ class App extends Component {
 
   editListing = listingDetails => {
     AppAPI.editListing(listingDetails).then(data => {
-      console.log(data);
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        const myListings = this.state.myListings.map(listing =>
+          listing.id === data.id ? data : listing
+        );
+        this.setState({ myListings });
+      }
     });
   };
 

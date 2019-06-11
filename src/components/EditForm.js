@@ -3,7 +3,15 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 class EditForm extends Component {
-  state = {};
+  state = {
+    title: this.props.listingToEdit.book.title,
+    author: this.props.listingToEdit.book.author,
+    genre: this.props.listingToEdit.book.genre,
+    location: this.props.listingToEdit.location,
+    image_url: this.props.listingToEdit.image_url,
+    category: this.props.listingToEdit.category,
+    condition: this.props.listingToEdit.condition
+  };
 
   handleChange = event =>
     this.setState({ [event.target.name]: event.target.value });
@@ -11,9 +19,11 @@ class EditForm extends Component {
   handleSubmit = id => {
     const listingDetails = {
       id: id,
-      title: { title: this.state.title },
-      genre: { genre: [this.state.genre] },
-      author: { author: [this.state.author] },
+      book: {
+        title: this.state.title,
+        genre: this.state.genre,
+        author: this.state.author
+      },
       listing: {
         location: this.state.location,
         image_url: this.state.image_url,
@@ -39,7 +49,7 @@ class EditForm extends Component {
       <div width={20}>
         <h5>Edit Listing</h5>
         <TextField
-          label={`Title: ${this.props.listingToEdit.book.title}`}
+          label={`Title`}
           value={title}
           onChange={handleChange}
           margin="normal"
@@ -48,9 +58,7 @@ class EditForm extends Component {
         />
         <br />
         <TextField
-          label={`Author: ${this.props.listingToEdit.book.authors.map(
-            author => author.author
-          )}`}
+          label={`Author`}
           value={author}
           onChange={handleChange}
           margin="normal"
@@ -60,9 +68,7 @@ class EditForm extends Component {
         />
         <br />
         <TextField
-          label={`Genre: ${this.props.listingToEdit.book.genres.map(
-            genre => genre.genre
-          )}`}
+          label={`Genre`}
           value={genre}
           onChange={handleChange}
           margin="normal"
@@ -72,7 +78,7 @@ class EditForm extends Component {
         />
         <br />
         <TextField
-          label={`Location: ${this.props.listingToEdit.location}`}
+          label={`Location`}
           value={location}
           onChange={handleChange}
           margin="normal"
@@ -82,7 +88,7 @@ class EditForm extends Component {
         />
         <br />
         <TextField
-          label={`Image: ${this.props.listingToEdit.image_url}`}
+          label={`Image`}
           value={image_url}
           onChange={handleChange}
           margin="normal"
@@ -92,7 +98,7 @@ class EditForm extends Component {
         />
         <br />
         <TextField
-          label={`Category: ${this.props.listingToEdit.category}`}
+          label={`Category`}
           value={category}
           onChange={handleChange}
           margin="normal"
@@ -102,7 +108,7 @@ class EditForm extends Component {
         />
         <br />
         <TextField
-          label={`Condition: ${this.props.listingToEdit.condition}`}
+          label={`Condition`}
           value={condition}
           onChange={handleChange}
           margin="normal"

@@ -12,13 +12,17 @@ class CreateListing extends Component {
 
   handleSubmit = () => {
     const listingDetails = {
-      title: this.state.title,
-      genre: [this.state.genre],
-      author: [this.state.author],
-      location: this.state.location,
-      image_url: this.state.image_url,
-      category: this.state.category,
-      condition: this.state.condition
+      book: {
+        title: this.state.title,
+        genre: this.state.genre,
+        author: this.state.author
+      },
+      listing: {
+        location: this.state.location,
+        image_url: this.state.image_url,
+        category: this.state.category,
+        condition: this.state.condition
+      }
     };
     AppAPI.createListing(listingDetails).then(data => {
       if (data.error) {

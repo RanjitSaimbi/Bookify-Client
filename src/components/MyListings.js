@@ -52,9 +52,7 @@ class MyListings extends Component {
                         <TableCell component="th" scope="row">
                           {row.book.title}
                         </TableCell>
-                        <TableCell align="right">
-                          {row.book.authors.map(author => author.author)}
-                        </TableCell>
+                        <TableCell align="right">{row.book.author}</TableCell>
                         <TableCell align="right">{row.category}</TableCell>
                         <TableCell align="right">{row.condition}</TableCell>
                         <TableCell align="right">

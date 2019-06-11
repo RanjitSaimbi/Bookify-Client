@@ -30,12 +30,7 @@ class CardMounter extends Component {
           <CardContent>
             <Typography variant="h5" component="h2">
               {this.props.listing.book.title}
-              <Typography>
-                by{" "}
-                {this.props.listing.book.authors.map(
-                  author => `${author.author}`
-                )}{" "}
-              </Typography>
+              <Typography>by {this.props.listing.book.author}</Typography>
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               Category: {this.props.listing.category} <br />
