@@ -14,10 +14,20 @@ const classes = {
 };
 
 class CardMounter extends Component {
+  displayUser = () => {
+    alert(
+      `Please e-mail ${
+        this.props.listing.user.username
+      } to register your interest in this book - ${
+        this.props.listing.user.email
+      }`
+    );
+  };
+
   state = {};
   render() {
     return (
-      <Card style={classes.card}>
+      <Card style={classes.card} onClick={this.displayUser}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -28,7 +38,7 @@ class CardMounter extends Component {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography variant="h5" component="h2">
+            <Typography variant="h7">
               {this.props.listing.book.title}
               <Typography>by {this.props.listing.book.author}</Typography>
             </Typography>

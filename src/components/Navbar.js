@@ -6,7 +6,7 @@ const Navbar = props => (
   <MDBNavbar color="indigo" dark expand="md">
     <MDBNavbarBrand>
       <Link to="/">
-        <strong className="white-text">Navbar</strong>
+        <strong className="white-text">LOGO</strong>
       </Link>
     </MDBNavbarBrand>
     <MDBNavbarNav right>
