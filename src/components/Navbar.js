@@ -5,7 +5,9 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem } from "mdbreact";
 const Navbar = props => (
   <MDBNavbar color="indigo" dark expand="md">
     <MDBNavbarBrand>
-      <strong className="white-text">Navbar</strong>
+      <Link to="/">
+        <strong className="white-text">Navbar</strong>
+      </Link>
     </MDBNavbarBrand>
     <MDBNavbarNav right>
       <MDBNavItem>

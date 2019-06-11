@@ -3,6 +3,8 @@ class AppAPI {
   static fetchListingsUrl = AppAPI.baseUrl + "/listings";
   static fetchMyListingsUrl = AppAPI.baseUrl + "/mylistings";
   static destroyListingUrl = AppAPI.baseUrl + "/deletelisting";
+  static createListingUrl = AppAPI.baseUrl + "/createlisting";
+  static editListingUrl = AppAPI.baseUrl + "/editlisting";
 
   static fetchListings() {
     return fetch(this.fetchListingsUrl).then(resp => resp.json());
@@ -25,6 +27,28 @@ class AppAPI {
         id
       })
     });
+  }
+
+  static createListing(listingDetails) {
+    return fetch(this.createListingUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token")
+      },
+      body: JSON.stringify(listingDetails)
+    }).then(resp => resp.json());
+  }
+
+  static editListing(listingDetails) {
+    return fetch(this.editListingUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token")
+      },
+      body: JSON.stringify(listingDetails)
+    }).then(resp => resp.json());
   }
 }
 

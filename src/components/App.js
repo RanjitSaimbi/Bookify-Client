@@ -6,15 +6,14 @@ import Container from "./Container";
 import SignUp from "./SignUp";
 import Navbar from "./Navbar";
 import MyListings from "./MyListings";
+import CreateListing from "../components/CreateListing";
 
 class App extends Component {
-  state = {};
+  state = { listings: [], myListings: [] };
 
   signin = (username, token) => {
     localStorage.setItem("token", token);
-    this.setState({ username }, () => {
-      this.props.history.push("/");
-    });
+    this.setState({ username });
   };
 
   signout = () => {
@@ -22,7 +21,29 @@ class App extends Component {
     localStorage.removeItem("token");
   };
 
+  deleteListing = id => {
+    AppAPI.destroyListing(id).then(data => {
+      if (data.error) {
+        alert(data.error);
+      } else {
+        this.setState({
+          ...this.state,
+          myListings: this.state.myListings.filter(listing => {
+            return listing.id !== id;
+          })
+        });
+      }
+    });
+  };
+
+  editListing = listingDetails => {
+    AppAPI.editListing(listingDetails).then(data => {
+      console.log(data);
+    });
+  };
+
   componentDidMount() {
+    AppAPI.fetchMyListings().then(resp => this.setState({ myListings: resp }));
     AppAPI.fetchListings().then(resp => this.setState({ listings: resp }));
     UserAPI.validate().then(data => {
       if (data.error) {
@@ -47,15 +68,26 @@ class App extends Component {
           />
           <Route
             exact
+            path="/listing/create"
+            component={props => <CreateListing />}
+          />
+          <Route
+            exact
             path="/listing/:id"
             component={props => <h1>INDIVIDUAL LISTING</h1>}
           />
           <Route
             exact
-            path="/listing/create"
-            component={props => <h1>CREATE LISTING</h1>}
+            path="/mylistings"
+            component={props => (
+              <MyListings
+                {...props}
+                myListings={this.state.myListings}
+                deleteListing={this.deleteListing}
+                editListing={this.editListing}
+              />
+            )}
           />
-          <Route exact path="/mylistings" component={props => <MyListings />} />
           <Route exact path="/about" component={props => <h1>ABOUT</h1>} />
           <Route
             exact
