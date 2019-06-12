@@ -14,11 +14,21 @@ class App extends Component {
   signin = (username, token) => {
     localStorage.setItem("token", token);
     this.setState({ username });
+    AppAPI.fetchMyListings().then(resp => this.setState({ myListings: resp }));
+    this.props.history.push("/");
+  };
+
+  filterOutMylistings = listings => {
+    const filteredListings = listings.filter(listing => {
+      return listing.user.username !== this.state.username;
+    });
+    this.setState({ listings: filteredListings });
   };
 
   signout = () => {
-    this.setState({ username: "" });
+    this.setState({ username: "", myListings: [] });
     localStorage.removeItem("token");
+    this.props.history.push("/");
   };
 
   deleteListing = id => {
@@ -32,8 +42,21 @@ class App extends Component {
             return listing.id !== id;
           })
         });
+
+        this.setState({
+          ...this.state,
+          listings: this.state.listings.filter(listing => {
+            return listing.id !== id;
+          })
+        });
       }
     });
+  };
+
+  updateStateOnCreate = createdListing => {
+    const updatedListings = [...this.state.listings, createdListing];
+    const myUpdatedListings = [...this.state.myListings, createdListing];
+    this.setState({ listings: updatedListings, myListings: myUpdatedListings });
   };
 
   editListing = listingDetails => {
@@ -50,8 +73,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    AppAPI.fetchMyListings().then(resp => this.setState({ myListings: resp }));
-    AppAPI.fetchListings().then(resp => this.setState({ listings: resp }));
+    AppAPI.fetchListings().then(resp => this.filterOutMylistings(resp));
     UserAPI.validate().then(data => {
       if (data.error) {
         console.log(data.error);
@@ -76,7 +98,12 @@ class App extends Component {
           <Route
             exact
             path="/listing/create"
-            component={props => <CreateListing />}
+            component={props => (
+              <CreateListing
+                {...props}
+                updateStateOnCreate={this.updateStateOnCreate}
+              />
+            )}
           />
           <Route
             exact

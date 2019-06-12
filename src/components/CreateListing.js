@@ -28,7 +28,7 @@ class CreateListing extends Component {
       if (data.error) {
         alert(data.error);
       } else {
-        console.log(data);
+        this.props.updateStateOnCreate(data);
         this.props.history.push("/");
       }
     });

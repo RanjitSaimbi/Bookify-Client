@@ -37,7 +37,7 @@ class Container extends Component {
         <div>
           <TextField
             style={{ margin: 8 }}
-            placeholder="Search"
+            placeholder="Search for books to borrow / buy in your area"
             helperText="Search by author, title, genre and listing location"
             fullWidth
             margin="normal"

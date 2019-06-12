@@ -46,7 +46,7 @@ class MyListings extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.props.myListings
+                {this.props.myListings.length > 0
                   ? this.props.myListings.map(row => (
                       <TableRow key={row.id}>
                         <TableCell component="th" scope="row">

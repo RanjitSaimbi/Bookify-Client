@@ -10,11 +10,13 @@ const Navbar = props => (
       </Link>
     </MDBNavbarBrand>
     <MDBNavbarNav right>
-      <MDBNavItem>
-        <Link to="/mylistings">
-          <h6>My Listings </h6>
-        </Link>
-      </MDBNavItem>
+      {props.username ? (
+        <MDBNavItem>
+          <Link to="/mylistings">
+            <h6>My Listings </h6>
+          </Link>
+        </MDBNavItem>
+      ) : null}
       &nbsp; &nbsp; &nbsp;
       <MDBNavItem>
         {props.username ? (
