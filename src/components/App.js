@@ -7,6 +7,8 @@ import SignUp from "./SignUp";
 import Navbar from "./Navbar";
 import MyListings from "./MyListings";
 import CreateListing from "../components/CreateListing";
+import IndividualListing from "./IndividualListing";
+import MessagePage from "./MessagePage";
 
 class App extends Component {
   state = { listings: [], myListings: [] };
@@ -15,6 +17,7 @@ class App extends Component {
     localStorage.setItem("token", token);
     this.setState({ username });
     AppAPI.fetchMyListings().then(resp => this.setState({ myListings: resp }));
+    AppAPI.fetchListings().then(resp => this.filterOutMylistings(resp));
     this.props.history.push("/");
   };
 
@@ -73,7 +76,10 @@ class App extends Component {
   };
 
   componentDidMount() {
-    AppAPI.fetchListings().then(resp => this.filterOutMylistings(resp));
+    if (!this.state.username) {
+      AppAPI.fetchListings().then(resp => this.setState({ listings: resp }));
+    }
+
     UserAPI.validate().then(data => {
       if (data.error) {
         console.log(data.error);
@@ -105,10 +111,26 @@ class App extends Component {
               />
             )}
           />
+          <Route exact path="/messages" component={props => <MessagePage />} />
           <Route
             exact
             path="/listing/:id"
-            component={props => <h1>INDIVIDUAL LISTING</h1>}
+            component={props => {
+              const id = parseInt(props.match.params.id);
+              const listing = this.state.listings.find(
+                listing => listing.id === id
+              );
+              if (this.state.listings.length === 0) return <h1>Loading...</h1>;
+              if (this.state.listings > 0 && listing === undefined)
+                return <h1>Listing Not found</h1>;
+              return (
+                <IndividualListing
+                  listing={listing}
+                  username={this.state.username}
+                  {...props}
+                />
+              );
+            }}
           />
           <Route
             exact
@@ -127,7 +149,11 @@ class App extends Component {
             exact
             path="/signup"
             component={props => (
-              <SignUp {...props} signin={this.signin}>
+              <SignUp
+                {...props}
+                signin={this.signin}
+                filterOutMylistings={this.filterOutMylistings}
+              >
                 {" "}
               </SignUp>
             )}

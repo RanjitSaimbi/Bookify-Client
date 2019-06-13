@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import UserAPI from "../api/UserApi";
+import AppAPI from "../api/AppApi";
 
 class SignUp extends Component {
   state = { username: "", email: "", password: "" };
@@ -17,6 +18,9 @@ class SignUp extends Component {
           : alert(data.error);
       } else {
         this.props.signin(this.state.username, data.token);
+        AppAPI.fetchListings().then(resp =>
+          this.props.filterOutMylistings(resp)
+        );
       }
     });
   };

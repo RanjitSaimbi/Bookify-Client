@@ -19,6 +19,12 @@ const Navbar = props => (
       ) : null}
       &nbsp; &nbsp; &nbsp;
       <MDBNavItem>
+        <Link to="/messages">
+          <h6>Messages </h6>
+        </Link>
+      </MDBNavItem>
+      &nbsp; &nbsp; &nbsp;
+      <MDBNavItem>
         {props.username ? (
           <h6 onClick={props.signout}>Log out </h6>
         ) : (

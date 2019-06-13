@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const classes = {
   card: {
@@ -14,44 +15,33 @@ const classes = {
 };
 
 class CardMounter extends Component {
-  displayUser = () => {
-    alert(
-      `Please e-mail ${
-        this.props.listing.user.username
-      } to register your interest in this book - ${
-        this.props.listing.user.email
-      }`
-    );
-  };
-
   state = {};
   render() {
     return (
-      <Card style={classes.card} onClick={this.displayUser}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            alt="Contemplative Reptile"
-            height="auto"
-            width="100%"
-            image={this.props.listing.image_url}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography variant="h7">
-              {this.props.listing.book.title}
-              <Typography>by {this.props.listing.book.author}</Typography>
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Category: {this.props.listing.category} <br />
-              Condition: {this.props.listing.condition}
-            </Typography>
-            <Button size="small" color="primary">
-              {this.props.listing.location}, {this.props.listing.user.username}
-            </Button>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <Link to={`/listing/${this.props.listing.id}`}>
+        <Card style={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              alt="Contemplative Reptile"
+              height="auto"
+              width="100%"
+              image={this.props.listing.image_url}
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography variant="h7">
+                {this.props.listing.book.title}
+                <Typography>by {this.props.listing.book.author}</Typography>
+              </Typography>
+              <Button size="small" color="primary">
+                {this.props.listing.location},{" "}
+                {this.props.listing.user.username}
+              </Button>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Link>
     );
   }
 }
