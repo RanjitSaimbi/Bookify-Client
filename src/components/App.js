@@ -18,6 +18,9 @@ class App extends Component {
     this.setState({ username });
     AppAPI.fetchMyListings().then(resp => this.setState({ myListings: resp }));
     AppAPI.fetchListings().then(resp => this.filterOutMylistings(resp));
+    UserAPI.getSenderRecipientMessages()
+      .then(resp => Object.keys(resp).map(i => resp[i]))
+      .then(data => this.setState({ myMessages: data }));
     this.props.history.push("/");
   };
 
@@ -111,7 +114,16 @@ class App extends Component {
               />
             )}
           />
-          <Route exact path="/messages" component={props => <MessagePage />} />
+          <Route
+            exact
+            path="/messages"
+            component={props => (
+              <MessagePage
+                myMessages={this.state.myMessages}
+                username={this.state.username}
+              />
+            )}
+          />
           <Route
             exact
             path="/listing/:id"

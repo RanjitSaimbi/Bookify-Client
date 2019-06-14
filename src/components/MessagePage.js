@@ -1,17 +1,23 @@
 import React, { Component } from "react";
-import UserAPI from "../api/UserApi";
+import BookMessages from "./BookMessages";
 
 class MessagePage extends Component {
   state = {};
-
-  componentDidMount() {
-    UserAPI.getSenderRecipientMessages().then(resp =>
-      this.setState({ myMessages: Object.keys(resp).map(i => resp[i]) })
-    );
-  }
-
   render() {
-    return <h1>MESSAGE PAGE</h1>;
+    return (
+      <div>
+        {this.props.myMessages
+          ? this.props.myMessages.map(bookMessages => {
+              return (
+                <BookMessages
+                  bookMessages={bookMessages}
+                  username={this.props.username}
+                />
+              );
+            })
+          : null}
+      </div>
+    );
   }
 }
 

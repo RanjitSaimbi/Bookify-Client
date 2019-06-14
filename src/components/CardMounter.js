@@ -30,7 +30,7 @@ class CardMounter extends Component {
               title="Contemplative Reptile"
             />
             <CardContent>
-              <Typography variant="h7">
+              <Typography variant="h6">
                 {this.props.listing.book.title}
                 <Typography>by {this.props.listing.book.author}</Typography>
               </Typography>
