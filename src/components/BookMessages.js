@@ -14,10 +14,12 @@ class BookMessages extends Component {
   state = {
     expanded: false,
     modal: false,
-    message: ""
+    message: "",
+    selectedRecipient: null
   };
 
   handleSelectionOfRecipient = event => {
+    event.persist();
     this.setState({ selectedRecipient: event.target.value });
   };
 
@@ -33,11 +35,11 @@ class BookMessages extends Component {
     this.setState({ modal: !this.state.modal });
   };
 
-  sendMessage = (book, recipient) => {
+  sendMessage = book => {
     const message = {
-      book: book,
+      book: book.id,
       body: this.state.message,
-      recipient: recipient
+      recipient: this.state.selectedRecipient
     };
     UserAPI.sendMessage(message)
       .then(resp => console.log(resp))
@@ -120,7 +122,7 @@ class BookMessages extends Component {
                 <div>
                   {" "}
                   <br />
-                  <Typography>
+                  <Typography key={bookMessage.id}>
                     from: {bookMessage.sender.username} to{" "}
                     {bookMessage.recipient.username} at {bookMessage.created_at}{" "}
                     {bookMessage.body}

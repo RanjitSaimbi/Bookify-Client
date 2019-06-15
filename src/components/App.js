@@ -6,12 +6,13 @@ import Container from "./Container";
 import SignUp from "./SignUp";
 import Navbar from "./Navbar";
 import MyListings from "./MyListings";
-import CreateListing from "../components/CreateListing";
+
 import IndividualListing from "./IndividualListing";
 import MessagePage from "./MessagePage";
+import CreateListingContainer from "./CreateListingContainer";
 
 class App extends Component {
-  state = { listings: [], myListings: [] };
+  state = { listings: [], myListings: [], myMessages: [] };
 
   signin = (username, token) => {
     localStorage.setItem("token", token);
@@ -32,7 +33,7 @@ class App extends Component {
   };
 
   signout = () => {
-    this.setState({ username: "", myListings: [] });
+    this.setState({ username: "", myListings: [], myMessages: [] });
     localStorage.removeItem("token");
     this.props.history.push("/");
   };
@@ -108,7 +109,7 @@ class App extends Component {
             exact
             path="/listing/create"
             component={props => (
-              <CreateListing
+              <CreateListingContainer
                 {...props}
                 updateStateOnCreate={this.updateStateOnCreate}
               />

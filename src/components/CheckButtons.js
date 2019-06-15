@@ -25,7 +25,6 @@ class CheckButtons extends Component {
       item => item !== null
     );
 
-    console.log(mergedArray);
     return (
       <div>
         <FormControl component="fieldset">
@@ -34,14 +33,17 @@ class CheckButtons extends Component {
             name="position"
             onChange={this.props.handleSelectionOfRecipient}
             row
-            // map over array here to select recipient
           >
-            <FormControlLabel
-              value="bottom"
-              control={<Radio color="primary" />}
-              label="Bottom"
-              labelPlacement="bottom"
-            />
+            {mergedArray.map(username => {
+              return (
+                <FormControlLabel
+                  value={username}
+                  control={<Radio color="primary" />}
+                  label={username}
+                  labelPlacement="bottom"
+                />
+              );
+            })}
           </RadioGroup>
         </FormControl>
       </div>
