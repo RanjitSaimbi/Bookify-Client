@@ -21,6 +21,7 @@ class SignUp extends Component {
         AppAPI.fetchListings().then(resp =>
           this.props.filterOutMylistings(resp)
         );
+        this.props.history.push("/");
       }
     });
   };
@@ -34,6 +35,7 @@ class SignUp extends Component {
         alert(data.error);
       } else {
         this.props.signin(data.username, data.token);
+        this.props.history.push("/");
       }
     });
   };

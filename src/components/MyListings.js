@@ -8,6 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
 import EditForm from "./EditForm";
+import styles from "../styles/MyListing.module.css";
 
 class MyListings extends Component {
   handleClick = id => {
@@ -26,6 +27,7 @@ class MyListings extends Component {
   render() {
     return (
       <div>
+        <div className={styles.container} />
         {this.state.hideTable ? (
           <EditForm
             listingToEdit={this.state.selectedListingToEdit[0]}

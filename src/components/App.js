@@ -22,7 +22,7 @@ class App extends Component {
     UserAPI.getSenderRecipientMessages()
       .then(resp => Object.keys(resp).map(i => resp[i]))
       .then(data => this.setState({ myMessages: data }));
-    this.props.history.push("/");
+    // this.props.history.push("/");
   };
 
   filterOutMylistings = listings => {

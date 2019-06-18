@@ -15,7 +15,8 @@ class CreateListing extends Component {
       book: {
         title: this.state.title,
         genre: this.state.genre,
-        author: this.state.author
+        author: this.state.author,
+        description: this.state.description
       },
       listing: {
         location: this.state.location,
@@ -40,6 +41,7 @@ class CreateListing extends Component {
           title: this.props.selectedBook.volumeInfo.title,
           author: this.props.selectedBook.volumeInfo.authors[0],
           genre: this.props.selectedBook.volumeInfo.categories[0],
+          description: this.props.selectedBook.volumeInfo.description,
           image_url: this.props.selectedBook.volumeInfo.imageLinks.thumbnail
         })
       : null;
@@ -50,6 +52,7 @@ class CreateListing extends Component {
       title,
       author,
       genre,
+      description,
       location,
       image_url,
       category,
@@ -83,6 +86,15 @@ class CreateListing extends Component {
           margin="normal"
           name="genre"
           type="genre"
+        />
+        <br />
+        <TextField
+          label="Description"
+          value={description || ""}
+          onChange={handleChange}
+          margin="normal"
+          name="description"
+          type="description"
         />
         <br />
         <TextField

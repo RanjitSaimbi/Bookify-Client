@@ -59,6 +59,12 @@ class UserAPI {
       }
     }).then(resp => resp.json());
   }
+
+  static getLongAndLat(postcode) {
+    return fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${postcode},+UK&key=AIzaSyA0B4v4wBVfRvPrYTUJDGHpj9KOvBUaK1Q`
+    ).then(resp => resp.json());
+  }
 }
 
 export default UserAPI;
