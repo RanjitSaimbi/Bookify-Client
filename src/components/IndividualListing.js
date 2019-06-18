@@ -113,7 +113,10 @@ class IndividualListing extends Component {
                         </Modal>
                       </div>
                     ) : (
-                      <h2>You have messaged the owner</h2>
+                      <div>
+                        <p />
+                        <h5>You have messaged the owner</h5>
+                      </div>
                     )}
                   </MDBMedia>
                   {this.props.listing.book.description}

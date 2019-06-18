@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBMedia } from "mdbreact";
 
 class EditForm extends Component {
   state = {
@@ -46,87 +45,141 @@ class EditForm extends Component {
     } = this.state;
     const { handleChange, handleSubmit } = this;
     return (
-      <div width={20}>
-        <h5>Edit Listing</h5>
-        <TextField
-          label={`Title`}
-          value={title}
-          onChange={handleChange}
-          margin="normal"
-          name="title"
-          fullWidth={true}
-        />
-        <br />
-        <TextField
-          label={`Author`}
-          value={author}
-          onChange={handleChange}
-          margin="normal"
-          name="author"
-          type="author"
-          fullWidth={true}
-        />
-        <br />
-        <TextField
-          label={`Genre`}
-          value={genre}
-          onChange={handleChange}
-          margin="normal"
-          name="genre"
-          type="genre"
-          fullWidth={true}
-        />
-        <br />
-        <TextField
-          label={`Location`}
-          value={location}
-          onChange={handleChange}
-          margin="normal"
-          name="location"
-          type="location"
-          fullWidth={true}
-        />
-        <br />
-        <TextField
-          label={`Image`}
-          value={image_url}
-          onChange={handleChange}
-          margin="normal"
-          name="image_url"
-          type=""
-          fullWidth={true}
-        />
-        <br />
-        <TextField
-          label={`Category`}
-          value={category}
-          onChange={handleChange}
-          margin="normal"
-          name="category"
-          type="category"
-          fullWidth={true}
-        />
-        <br />
-        <TextField
-          label={`Condition`}
-          value={condition}
-          onChange={handleChange}
-          margin="normal"
-          name="condition"
-          type="condition"
-          fullWidth={true}
-        />
-        <br />
-        <Button
-          onClick={() => {
-            handleSubmit(this.props.listingToEdit.id);
-          }}
-          variant="contained"
-          color="primary"
-        >
-          EDIT
-        </Button>
-      </div>
+      <MDBContainer>
+        <MDBRow>
+          <MDBCol md="6">
+            <form>
+              <p />
+              <p className="h4 text-center mb-4">Edit Listing</p>
+              <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+                Title
+              </label>
+              <input
+                type="text"
+                id="defaultFormRegisterNameEx"
+                className="form-control"
+                value={title}
+                onChange={handleChange}
+                name="title"
+              />
+              <br />
+              <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
+                Author
+              </label>
+              <input
+                type="text"
+                id="defaultFormRegisterEmailEx"
+                className="form-control"
+                value={author}
+                onChange={handleChange}
+                name="author"
+              />
+              <br />
+              <label
+                htmlFor="defaultFormRegisterConfirmEx"
+                className="grey-text"
+              >
+                Genre
+              </label>
+              <input
+                type="text"
+                id="defaultFormRegisterConfirmEx"
+                className="form-control"
+                value={genre}
+                onChange={handleChange}
+                name="genre"
+              />
+              <br />
+              <label
+                htmlFor="defaultFormRegisterPasswordEx"
+                className="grey-text"
+              >
+                Location
+              </label>
+              <input
+                type="text"
+                id="defaultFormRegisterPasswordEx"
+                className="form-control"
+                value={location}
+                onChange={handleChange}
+                name="location"
+              />
+              <br />
+              <label
+                htmlFor="defaultFormRegisterPasswordEx"
+                className="grey-text"
+              >
+                Image
+              </label>
+              <input
+                type="text"
+                id="defaultFormRegisterPasswordEx"
+                className="form-control"
+                value={image_url}
+                onChange={handleChange}
+                name="image_url"
+              />
+              <br />
+              <label
+                htmlFor="defaultFormRegisterPasswordEx"
+                className="grey-text"
+              >
+                Category
+              </label>
+              <input
+                type="text"
+                id="defaultFormRegisterPasswordEx"
+                className="form-control"
+                value={category}
+                onChange={handleChange}
+                name="category"
+              />
+              <br />
+              <label
+                htmlFor="defaultFormRegisterPasswordEx"
+                className="grey-text"
+              >
+                Condition
+              </label>
+              <input
+                type="text"
+                id="defaultFormRegisterPasswordEx"
+                className="form-control"
+                value={condition}
+                onChange={handleChange}
+                name="condition"
+              />
+              <div className="text-center mt-4">
+                <MDBBtn
+                  color="unique"
+                  type="submit"
+                  onClick={() => {
+                    handleSubmit(this.props.listingToEdit.id);
+                  }}
+                >
+                  EDIT
+                </MDBBtn>
+                <MDBBtn
+                  color="unique"
+                  type="submit"
+                  onClick={this.props.goBack}
+                >
+                  GO BACK
+                </MDBBtn>
+              </div>
+            </form>
+          </MDBCol>
+          <MDBCol md="2">
+            <p />
+            <p className="h4 text-center mb-4">Image Preview</p>
+
+            <MDBMedia>
+              {" "}
+              <MDBMedia object src={image_url} alt="" />
+            </MDBMedia>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     );
   }
 }

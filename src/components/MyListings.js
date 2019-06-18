@@ -23,6 +23,23 @@ class MyListings extends Component {
     this.setState({ selectedListingToEdit });
   };
 
+  goBack = () => {
+    this.setState({ hideTable: !this.state.hideTable });
+  };
+
+  handleStatusClose = (id, bookTitle) => {
+    let listingDetails = {
+      id: id,
+      book: {
+        title: bookTitle
+      },
+      listing: {
+        open_listing: false
+      }
+    };
+    this.props.editListing(listingDetails);
+  };
+
   state = { hideTable: false, selectedListingToEdit: null };
   render() {
     return (
@@ -32,6 +49,7 @@ class MyListings extends Component {
           <EditForm
             listingToEdit={this.state.selectedListingToEdit[0]}
             editListing={this.props.editListing}
+            goBack={this.goBack}
           />
         ) : (
           <Paper>
@@ -61,7 +79,17 @@ class MyListings extends Component {
                           {new Date(row.created_at).toGMTString()}
                         </TableCell>
                         <TableCell align="right">
-                          {row.open_listing ? `Open` : `Closed Listing`}
+                          {row.open_listing ? (
+                            <Button
+                              onClick={() => {
+                                this.handleStatusClose(row.id, row.book.title);
+                              }}
+                            >
+                              Open
+                            </Button>
+                          ) : (
+                            `Closed Listing`
+                          )}
                         </TableCell>
                         <TableCell>
                           <Button
@@ -70,14 +98,16 @@ class MyListings extends Component {
                           >
                             <DeleteIcon />
                           </Button>
-                          <Button
-                            onClick={() => {
-                              this.handleEdit(row.id);
-                            }}
-                            size="small"
-                          >
-                            EDIT
-                          </Button>
+                          {row.open_listing ? (
+                            <Button
+                              onClick={() => {
+                                this.handleEdit(row.id);
+                              }}
+                              size="small"
+                            >
+                              EDIT
+                            </Button>
+                          ) : null}
                         </TableCell>
                       </TableRow>
                     ))
