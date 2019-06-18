@@ -61,16 +61,22 @@ class Container extends Component {
             />
             <br />
             <br />
-            <Link to="/listing/create">
-              <h3>List Book </h3>
-            </Link>
+            {this.props.username ? (
+              <Link to="/listing/create">
+                <h3>List Book </h3>
+              </Link>
+            ) : null}
           </div>
         </div>
         <div className={styles.nested}>
           {" "}
           {this.props.listings
             ? searchListings().map(listing => (
-                <CardMounter key={listing.id} listing={listing} />
+                <CardMounter
+                  key={listing.id}
+                  listing={listing}
+                  username={this.props.username}
+                />
               ))
             : null}
         </div>

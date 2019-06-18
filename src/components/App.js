@@ -22,7 +22,6 @@ class App extends Component {
     UserAPI.getSenderRecipientMessages()
       .then(resp => Object.keys(resp).map(i => resp[i]))
       .then(data => this.setState({ myMessages: data }));
-    // this.props.history.push("/");
   };
 
   filterOutMylistings = listings => {
@@ -102,7 +101,12 @@ class App extends Component {
             exact
             path="/"
             component={props => (
-              <Container listings={this.state.listings}> </Container>
+              <Container
+                listings={this.state.listings}
+                username={this.state.username}
+              >
+                {" "}
+              </Container>
             )}
           />
           <Route

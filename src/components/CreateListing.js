@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBMedia } from "mdbreact";
 import AppAPI from "../api/AppApi";
+import styles from "../styles/CreateListing.module.css";
 
 class CreateListing extends Component {
   state = {};
@@ -61,81 +61,149 @@ class CreateListing extends Component {
     const { handleChange, handleSubmit } = this;
     return (
       <div>
-        <h5>Create Listing</h5>
-        <TextField
-          label="Book title"
-          value={title || ""}
-          onChange={handleChange}
-          margin="normal"
-          name="title"
-        />
-        <br />
-        <TextField
-          label="Author"
-          value={author || ""}
-          onChange={handleChange}
-          margin="normal"
-          name="author"
-          type="author"
-        />
-        <br />
-        <TextField
-          label="Genre"
-          value={genre || ""}
-          onChange={handleChange}
-          margin="normal"
-          name="genre"
-          type="genre"
-        />
-        <br />
-        <TextField
-          label="Description"
-          value={description || ""}
-          onChange={handleChange}
-          margin="normal"
-          name="description"
-          type="description"
-        />
-        <br />
-        <TextField
-          label="Location"
-          value={location || ""}
-          onChange={handleChange}
-          margin="normal"
-          name="location"
-          type="location"
-        />
-        <br />
-        <TextField
-          label="Image"
-          value={image_url || ""}
-          onChange={handleChange}
-          margin="normal"
-          name="image_url"
-          type=""
-        />
-        <br />
-        <TextField
-          label="Category"
-          value={category || ""}
-          onChange={handleChange}
-          margin="normal"
-          name="category"
-          type="category"
-        />
-        <br />
-        <TextField
-          label="Condition"
-          value={condition || ""}
-          onChange={handleChange}
-          margin="normal"
-          name="condition"
-          type="condition"
-        />
-        <br />
-        <Button onClick={handleSubmit} variant="contained" color="primary">
-          CREATE
-        </Button>
+        <div className={styles.container} />
+        <MDBContainer>
+          <MDBRow>
+            <MDBCol md="6">
+              <form>
+                <p />
+                <p className="h4 text-center mb-4">Create Listing</p>
+                <label
+                  htmlFor="defaultFormRegisterNameEx"
+                  className="grey-text"
+                >
+                  Title
+                </label>
+                <input
+                  type="text"
+                  id="defaultFormRegisterNameEx"
+                  className="form-control"
+                  value={title}
+                  onChange={handleChange}
+                  name="title"
+                />
+                <br />
+                <label
+                  htmlFor="defaultFormRegisterEmailEx"
+                  className="grey-text"
+                >
+                  Author
+                </label>
+                <input
+                  type="text"
+                  id="defaultFormRegisterEmailEx"
+                  className="form-control"
+                  value={author}
+                  onChange={handleChange}
+                  name="author"
+                />
+                <br />
+                <label
+                  htmlFor="defaultFormRegisterConfirmEx"
+                  className="grey-text"
+                >
+                  Genre
+                </label>
+                <input
+                  type="text"
+                  id="defaultFormRegisterConfirmEx"
+                  className="form-control"
+                  value={genre}
+                  onChange={handleChange}
+                  name="genre"
+                />
+                <label
+                  htmlFor="defaultFormRegisterConfirmEx"
+                  className="grey-text"
+                >
+                  Description
+                </label>
+                <input
+                  type="text"
+                  id="defaultFormRegisterConfirmEx"
+                  className="form-control"
+                  value={description}
+                  onChange={handleChange}
+                  name="description"
+                />
+                <br />
+
+                <label
+                  htmlFor="defaultFormRegisterPasswordEx"
+                  className="grey-text"
+                >
+                  Image
+                </label>
+                <input
+                  type="text"
+                  id="defaultFormRegisterPasswordEx"
+                  className="form-control"
+                  value={image_url}
+                  onChange={handleChange}
+                  name="image_url"
+                />
+                <br />
+                <label
+                  htmlFor="defaultFormRegisterPasswordEx"
+                  className="grey-text"
+                >
+                  Location
+                </label>
+                <input
+                  type="text"
+                  id="defaultFormRegisterPasswordEx"
+                  className="form-control"
+                  value={location}
+                  onChange={handleChange}
+                  name="location"
+                />
+                <br />
+                <label
+                  htmlFor="defaultFormRegisterPasswordEx"
+                  className="grey-text"
+                >
+                  Category
+                </label>
+                <input
+                  type="text"
+                  id="defaultFormRegisterPasswordEx"
+                  className="form-control"
+                  value={category}
+                  onChange={handleChange}
+                  name="category"
+                />
+                <br />
+                <label
+                  htmlFor="defaultFormRegisterPasswordEx"
+                  className="grey-text"
+                >
+                  Condition
+                </label>
+                <input
+                  type="text"
+                  id="defaultFormRegisterPasswordEx"
+                  className="form-control"
+                  value={condition}
+                  onChange={handleChange}
+                  name="condition"
+                />
+                <div className="text-center mt-4">
+                  <MDBBtn color="unique" type="submit" onClick={handleSubmit}>
+                    CREATE
+                  </MDBBtn>
+                </div>
+              </form>
+            </MDBCol>
+            <MDBCol md="6">
+              <p />
+              <p className="h4 text-center mb-4">
+                Image Preview
+                <p />
+                <MDBMedia className="mt-3" object src={image_url} alt="" />
+              </p>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
       </div>
     );
   }

@@ -24,13 +24,15 @@ const Navbar = props => (
       ) : null}
       &nbsp; &nbsp; &nbsp;
       <MDBNavItem>
-        <NavLink
-          className={styles.linkFont}
-          to="/messages"
-          activeStyle={{ color: "#f73b5a" }}
-        >
-          <h6>Messages </h6>
-        </NavLink>
+        {props.username ? (
+          <NavLink
+            className={styles.linkFont}
+            to="/messages"
+            activeStyle={{ color: "#f73b5a" }}
+          >
+            <h6> Messages </h6>
+          </NavLink>
+        ) : null}
       </MDBNavItem>
       &nbsp; &nbsp; &nbsp;
       <MDBNavItem>
