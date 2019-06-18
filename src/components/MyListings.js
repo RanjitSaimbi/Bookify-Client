@@ -59,11 +59,7 @@ class MyListings extends Component {
                           {new Date(row.created_at).toGMTString()}
                         </TableCell>
                         <TableCell align="right">
-                          {row.open_listing
-                            ? `Open`
-                            : `Purchased by ${row.closed_listings.map(
-                                purchaser => purchaser.purchaser.username
-                              )}`}
+                          {row.open_listing ? `Open` : `Closed Listing`}
                         </TableCell>
                         <TableCell>
                           <Button

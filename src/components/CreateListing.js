@@ -34,6 +34,17 @@ class CreateListing extends Component {
     });
   };
 
+  componentWillReceiveProps() {
+    return this.props.selectedBook
+      ? this.setState({
+          title: this.props.selectedBook.volumeInfo.title,
+          author: this.props.selectedBook.volumeInfo.authors[0],
+          genre: this.props.selectedBook.volumeInfo.categories[0],
+          image_url: this.props.selectedBook.volumeInfo.imageLinks.thumbnail
+        })
+      : null;
+  }
+
   render() {
     const {
       title,
@@ -50,7 +61,7 @@ class CreateListing extends Component {
         <h5>Create Listing</h5>
         <TextField
           label="Book title"
-          value={title}
+          value={title || ""}
           onChange={handleChange}
           margin="normal"
           name="title"
@@ -58,7 +69,7 @@ class CreateListing extends Component {
         <br />
         <TextField
           label="Author"
-          value={author}
+          value={author || ""}
           onChange={handleChange}
           margin="normal"
           name="author"
@@ -67,7 +78,7 @@ class CreateListing extends Component {
         <br />
         <TextField
           label="Genre"
-          value={genre}
+          value={genre || ""}
           onChange={handleChange}
           margin="normal"
           name="genre"
@@ -76,7 +87,7 @@ class CreateListing extends Component {
         <br />
         <TextField
           label="Location"
-          value={location}
+          value={location || ""}
           onChange={handleChange}
           margin="normal"
           name="location"
@@ -85,7 +96,7 @@ class CreateListing extends Component {
         <br />
         <TextField
           label="Image"
-          value={image_url}
+          value={image_url || ""}
           onChange={handleChange}
           margin="normal"
           name="image_url"
@@ -94,7 +105,7 @@ class CreateListing extends Component {
         <br />
         <TextField
           label="Category"
-          value={category}
+          value={category || ""}
           onChange={handleChange}
           margin="normal"
           name="category"
@@ -103,7 +114,7 @@ class CreateListing extends Component {
         <br />
         <TextField
           label="Condition"
-          value={condition}
+          value={condition || ""}
           onChange={handleChange}
           margin="normal"
           name="condition"

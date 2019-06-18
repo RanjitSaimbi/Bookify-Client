@@ -1,0 +1,14 @@
+.container {
+  height: 100px;
+}
+
+.containerFlex {
+  display: flex;
+  justify-content: space-around;
+}
+
+.widthFlex {
+  flex-basis: 50%;
+  min-height: 100vh;
+  background: yellow;
+}

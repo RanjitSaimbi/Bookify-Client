@@ -4,7 +4,8 @@ import TextField from "@material-ui/core/TextField";
 class SearchBooksAPI extends Component {
   state = {
     search: "",
-    searchResults: []
+    searchResults: [],
+    selectedBook: {}
   };
 
   getBooks = () => {
@@ -35,10 +36,24 @@ class SearchBooksAPI extends Component {
           margin="normal"
           name="search"
         />
-
-        {this.props.searchResults
-          ? this.props.searchResults.map(result => {})
-          : null}
+        <ul>
+          {this.state.searchResults.items
+            ? this.state.searchResults.items.map(result => {
+                return result.volumeInfo.imageLinks ? (
+                  <div key={result.id}>
+                    <img src={result.volumeInfo.imageLinks.thumbnail} alt="" />
+                    <h6
+                      onClick={() => {
+                        this.props.selectBook(result);
+                      }}
+                    >
+                      {result.volumeInfo.title}
+                    </h6>
+                  </div>
+                ) : null;
+              })
+            : null}
+        </ul>
       </div>
     );
   }

@@ -2,8 +2,33 @@
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-rows: 10% 60% auto;
-  padding: 5%;
+  grid-template-rows: 9% 100% auto;
+}
+
+.imgStyle {
+  background-image: url("https://images.unsplash.com/photo-1511872638242-f1652016540e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80");
+
+  /* Full height */
+  height: auto;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.font {
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 25px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  color: #ffffff;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-shadow: 2px 2px 2px #f73b5a;
 }
 
 .nested {
@@ -11,4 +36,5 @@
   grid-auto-rows: minmax(100px, auto);
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 6em;
+  padding: 4em;
 }

@@ -1,43 +1,61 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem } from "mdbreact";
+import styles from "../styles/NavBar.module.css";
 
 const Navbar = props => (
-  <MDBNavbar color="indigo" dark expand="md">
+  <MDBNavbar color="indigo" dark expand="md" scrolling fixed="top">
     <MDBNavbarBrand>
-      <Link to="/">
-        <strong className="white-text">LOGO</strong>
-      </Link>
+      <NavLink to="/">
+        <h2 className={styles.fontLogo}>BOOKIFY</h2>
+      </NavLink>
     </MDBNavbarBrand>
     <MDBNavbarNav right>
       {props.username ? (
         <MDBNavItem>
-          <Link to="/mylistings">
+          <NavLink
+            className={styles.linkFont}
+            to="/mylistings"
+            activeStyle={{ color: "#f73b5a" }}
+          >
             <h6>My Listings </h6>
-          </Link>
+          </NavLink>
         </MDBNavItem>
       ) : null}
       &nbsp; &nbsp; &nbsp;
       <MDBNavItem>
-        <Link to="/messages">
+        <NavLink
+          className={styles.linkFont}
+          to="/messages"
+          activeStyle={{ color: "#f73b5a" }}
+        >
           <h6>Messages </h6>
-        </Link>
+        </NavLink>
       </MDBNavItem>
       &nbsp; &nbsp; &nbsp;
       <MDBNavItem>
         {props.username ? (
-          <h6 onClick={props.signout}>Log out </h6>
+          <NavLink
+            className={styles.linkFont}
+            activeStyle={{ color: "#f73b5a" }}
+          >
+            <h6 onClick={props.signout}>Log out </h6>
+          </NavLink>
         ) : (
-          <Link to="/signup">
+          <NavLink to="/signup" className={styles.linkFont}>
             <h6>Sign Up </h6>
-          </Link>
+          </NavLink>
         )}
       </MDBNavItem>
       &nbsp; &nbsp; &nbsp;
       <MDBNavItem>
-        <Link to="/about">
+        <NavLink
+          to="/about"
+          className={styles.linkFont}
+          activeStyle={{ color: "#f73b5a" }}
+        >
           <h6>About </h6>
-        </Link>
+        </NavLink>
       </MDBNavItem>
     </MDBNavbarNav>
   </MDBNavbar>

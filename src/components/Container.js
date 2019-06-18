@@ -34,22 +34,37 @@ class Container extends Component {
     return (
       <div className={styles.container}>
         <div />
-        <div>
-          <TextField
-            style={{ margin: 8 }}
-            placeholder="Search for books to borrow / buy in your area"
-            helperText="Search by author, title, genre and listing location"
-            fullWidth
-            margin="normal"
-            InputProps={{ style: { fontSize: 40 } }}
-            value={searchTerm}
-            onChange={setSearch}
-          />
-          <br />
-          <br />
-          <Link to="/listing/create">
-            <h5>List Book </h5>
-          </Link>
+        <div
+          className={styles.imgStyle}
+          style={{ position: "relative", textAlign: "center" }}
+        >
+          <div
+            style={{
+              position: "relative",
+              top: "61%"
+            }}
+          >
+            <TextField
+              placeholder="Search for books to borrow / buy in your area"
+              helperText="Search by author, title, genre and listing location"
+              color="red"
+              margin="normal"
+              InputProps={{
+                style: {
+                  fontSize: 58,
+                  color: "#f73b5a"
+                }
+              }}
+              style={{ width: "80%" }}
+              value={searchTerm}
+              onChange={setSearch}
+            />
+            <br />
+            <br />
+            <Link to="/listing/create">
+              <h3>List Book </h3>
+            </Link>
+          </div>
         </div>
         <div className={styles.nested}>
           {" "}

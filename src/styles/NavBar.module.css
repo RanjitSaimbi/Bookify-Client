@@ -1,0 +1,21 @@
+.fontLogo {
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 25px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  color: #ffffff;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-shadow: 2px 2px 2px #f73b5a;
+}
+
+.linkFont {
+  color: #fff;
+}
+
+.activeLinkFont {
+  color: "#f73b5a";
+}

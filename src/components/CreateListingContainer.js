@@ -5,11 +5,19 @@ import styles from "../styles/ListingContainer.module.css";
 
 class CreateListingContainer extends Component {
   state = {};
+
+  selectBook = result => {
+    this.setState({ selectedBook: result });
+  };
+
   render() {
     return (
       <div className={styles.container}>
-        <CreateListing updateStateOnCreate={this.props.updateStateOnCreate} />
-        <SearchBooksAPI />
+        <CreateListing
+          updateStateOnCreate={this.props.updateStateOnCreate}
+          selectedBook={this.state.selectedBook}
+        />
+        <SearchBooksAPI selectBook={this.selectBook} />
       </div>
     );
   }
