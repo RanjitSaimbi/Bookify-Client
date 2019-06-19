@@ -19,9 +19,9 @@ class App extends Component {
     this.setState({ username });
     AppAPI.fetchMyListings().then(resp => this.setState({ myListings: resp }));
     AppAPI.fetchListings().then(resp => this.filterOutMylistings(resp));
-    UserAPI.getSenderRecipientMessages()
-      .then(resp => Object.keys(resp).map(i => resp[i]))
-      .then(data => this.setState({ myMessages: data }));
+    UserAPI.getSenderRecipientMessages().then(data =>
+      this.setState({ myMessages: data })
+    );
   };
 
   filterOutMylistings = listings => {
@@ -60,9 +60,8 @@ class App extends Component {
   };
 
   updateStateOnCreate = createdListing => {
-    const updatedListings = [...this.state.listings, createdListing];
     const myUpdatedListings = [...this.state.myListings, createdListing];
-    this.setState({ listings: updatedListings, myListings: myUpdatedListings });
+    this.setState({ myListings: myUpdatedListings });
   };
 
   editListing = listingDetails => {
@@ -75,6 +74,32 @@ class App extends Component {
         );
         this.setState({ myListings });
       }
+    });
+  };
+
+  sendMessage = message => {
+    return UserAPI.sendMessage(message).then(resp => {
+      let messageForState = resp.message;
+      let key = resp.message.book.id;
+      let arrayforState = [
+        ...this.state.myMessages[resp.message.book.id],
+        messageForState
+      ];
+
+      this.setState({
+        myMessages: { ...this.state.myMessages, [key]: arrayforState }
+      });
+    });
+  };
+
+  sendFirstMessage = message => {
+    return UserAPI.sendMessage(message).then(resp => {
+      let messageForState = resp.message;
+      let key = resp.message.book.id;
+
+      this.setState({
+        myMessages: { ...this.state.myMessages, [key]: [messageForState] }
+      });
     });
   };
 
@@ -126,6 +151,7 @@ class App extends Component {
               <MessagePage
                 myMessages={this.state.myMessages}
                 username={this.state.username}
+                sendMessage={this.sendMessage}
               />
             )}
           />
@@ -145,6 +171,7 @@ class App extends Component {
                   listing={listing}
                   username={this.state.username}
                   {...props}
+                  sendMessage={this.sendFirstMessage}
                 />
               );
             }}

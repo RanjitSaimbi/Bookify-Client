@@ -39,19 +39,19 @@ class IndividualListing extends Component {
     this.setState({ modal: !this.state.modal });
   };
 
-  sendMessage = () => {
-    const message = {
-      book: this.props.listing.book.id,
-      body: this.state.message,
-      recipient: this.props.listing.user.username
-    };
-    UserAPI.sendMessage(message)
-      .then(resp => console.log(resp))
-      .then(this.toggle())
-      .then(
-        this.setState({ showMessageButton: !this.state.showMessageButton })
-      );
-  };
+  // sendMessage = message => {
+  //   // const message = {
+  //   //   book: this.props.listing.book.id,
+  //   //   body: this.state.message,
+  //   //   recipient: this.props.listing.user.username
+  //   // };
+  //   UserAPI.sendMessage(message)
+  //     .then(resp => console.log(resp))
+  //     .then(this.toggle())
+  //     .then(
+  //       this.setState({ showMessageButton: !this.state.showMessageButton })
+  //     );
+  // };
 
   handleChange = event =>
     this.setState({ [event.target.name]: event.target.value });
@@ -103,7 +103,17 @@ class IndividualListing extends Component {
                             </FormGroup>
                           </ModalBody>
                           <ModalFooter>
-                            <MDBBtn color="primary" onClick={this.sendMessage}>
+                            <MDBBtn
+                              color="primary"
+                              onClick={() => {
+                                const message = {
+                                  book: this.props.listing.book.id,
+                                  body: this.state.message,
+                                  recipient: this.props.listing.user.username
+                                };
+                                this.props.sendMessage(message);
+                              }}
+                            >
                               Send Message
                             </MDBBtn>{" "}
                             <MDBBtn color="secondary" onClick={this.toggle}>

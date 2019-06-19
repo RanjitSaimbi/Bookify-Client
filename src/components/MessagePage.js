@@ -5,15 +5,18 @@ import styles from "../styles/MessagePage.module.css";
 class MessagePage extends Component {
   state = {};
   render() {
+    let myMessages = this.props.myMessages;
+    let arrayOfMyMessages = Object.keys(myMessages).map(i => myMessages[i]);
     return (
       <div>
         <div className={styles.container} />
-        {this.props.myMessages
-          ? this.props.myMessages.map(bookMessages => {
+        {arrayOfMyMessages
+          ? arrayOfMyMessages.map(bookMessages => {
               return (
                 <BookMessages
                   bookMessages={bookMessages}
                   username={this.props.username}
+                  sendMessage={this.props.sendMessage}
                 />
               );
             })

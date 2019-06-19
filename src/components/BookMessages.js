@@ -7,7 +7,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Button from "@material-ui/core/Button";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { FormGroup, Input } from "reactstrap";
-import UserAPI from "../api/UserApi";
 import CheckButtons from "./CheckButtons";
 
 class BookMessages extends Component {
@@ -32,19 +31,7 @@ class BookMessages extends Component {
   };
 
   toggle = () => {
-    this.setState({ modal: !this.state.modal });
-  };
-
-  sendMessage = book => {
-    const message = {
-      book: book.id,
-      body: this.state.message,
-      recipient: this.state.selectedRecipient
-    };
-    UserAPI.sendMessage(message)
-      .then(resp => console.log(resp))
-      .then(this.toggle());
-    //   make relevant changes to state where necessary
+    this.setState({ modal: !this.state.modal, message: "" });
   };
 
   render() {
@@ -104,8 +91,12 @@ class BookMessages extends Component {
                   <Button
                     color="primary"
                     onClick={() => {
-                      let book = this.props.bookMessages[0].book;
-                      this.sendMessage(book);
+                      const message = {
+                        book: this.props.bookMessages[0].book.id,
+                        body: this.state.message,
+                        recipient: this.state.selectedRecipient
+                      };
+                      this.props.sendMessage(message).then(this.toggle());
                     }}
                   >
                     Send Message
@@ -117,19 +108,17 @@ class BookMessages extends Component {
               </Modal>
             </div>
 
-            {this.props.bookMessages.map(bookMessage => {
-              return (
-                <div>
-                  {" "}
-                  <br />
-                  <Typography key={bookMessage.id}>
-                    from: {bookMessage.sender.username} to{" "}
-                    {bookMessage.recipient.username} at {bookMessage.created_at}{" "}
-                    {bookMessage.body}
-                  </Typography>
-                </div>
-              );
-            })}
+            {this.props.bookMessages
+              ? this.props.bookMessages.map(bookMessage => {
+                  return (
+                    <p key={bookMessage.id}>
+                      from: {bookMessage.sender.username} to{" "}
+                      {bookMessage.recipient.username} at{" "}
+                      {bookMessage.created_at} {bookMessage.body}
+                    </p>
+                  );
+                })
+              : null}
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>

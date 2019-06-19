@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import styles from "../styles/CreateListing.module.css";
+import { debounce } from "lodash";
 
 class SearchBooksAPI extends Component {
   state = {
@@ -22,7 +23,9 @@ class SearchBooksAPI extends Component {
   handleChange = event => {
     this.setState(
       { [event.target.name]: event.target.value },
-      this.getBooks(this.state.search)
+      debounce(() => {
+        this.getBooks(this.state.search);
+      }, 2000)
     );
   };
 

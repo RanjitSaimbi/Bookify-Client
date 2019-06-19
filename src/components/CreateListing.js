@@ -25,14 +25,15 @@ class CreateListing extends Component {
         condition: this.state.condition
       }
     };
-    AppAPI.createListing(listingDetails).then(data => {
-      if (data.error) {
-        alert(data.error);
-      } else {
-        this.props.updateStateOnCreate(data);
-        this.props.history.push("/");
-      }
-    });
+    AppAPI.createListing(listingDetails)
+      .then(data => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          this.props.updateStateOnCreate(data);
+        }
+      })
+      .then(this.props.history.push("/"));
   };
 
   componentWillReceiveProps() {
