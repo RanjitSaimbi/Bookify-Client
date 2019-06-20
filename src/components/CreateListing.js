@@ -5,7 +5,16 @@ import AppAPI from "../api/AppApi";
 import styles from "../styles/CreateListing.module.css";
 
 class CreateListing extends Component {
-  state = {};
+  state = {
+    title: "",
+    genre: "",
+    author: "",
+    description: "",
+    location: "",
+    image_url: "",
+    category: "",
+    condition: ""
+  };
 
   handleChange = event =>
     this.setState({ [event.target.name]: event.target.value });
@@ -25,6 +34,7 @@ class CreateListing extends Component {
         condition: this.state.condition
       }
     };
+
     AppAPI.createListing(listingDetails)
       .then(data => {
         if (data.error) {
@@ -40,8 +50,12 @@ class CreateListing extends Component {
     return this.props.selectedBook
       ? this.setState({
           title: this.props.selectedBook.volumeInfo.title,
-          author: this.props.selectedBook.volumeInfo.authors[0],
-          genre: this.props.selectedBook.volumeInfo.categories[0],
+          author: this.props.selectedBook.volumeInfo.authors[0]
+            ? this.props.selectedBook.volumeInfo.authors[0]
+            : null,
+          genre: this.props.selectedBook.volumeInfo.categories[0]
+            ? this.props.selectedBook.volumeInfo.categories[0]
+            : null,
           description: this.props.selectedBook.volumeInfo.description,
           image_url: this.props.selectedBook.volumeInfo.imageLinks.thumbnail
         })
@@ -200,7 +214,17 @@ class CreateListing extends Component {
               <p className="h4 text-center mb-4">
                 Image Preview
                 <p />
-                <MDBMedia className="mt-3" object src={image_url} alt="" />
+                <div
+                  style={{
+                    backgroundImage: `url(${image_url})`,
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    height: "50vh",
+                    width: "30vh"
+                  }}
+                />
+                {/* <MDBMedia className="mt-3" object src={image_url} alt="" /> */}
               </p>
             </MDBCol>
           </MDBRow>

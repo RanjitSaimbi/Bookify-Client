@@ -39,20 +39,6 @@ class IndividualListing extends Component {
     this.setState({ modal: !this.state.modal });
   };
 
-  // sendMessage = message => {
-  //   // const message = {
-  //   //   book: this.props.listing.book.id,
-  //   //   body: this.state.message,
-  //   //   recipient: this.props.listing.user.username
-  //   // };
-  //   UserAPI.sendMessage(message)
-  //     .then(resp => console.log(resp))
-  //     .then(this.toggle())
-  //     .then(
-  //       this.setState({ showMessageButton: !this.state.showMessageButton })
-  //     );
-  // };
-
   handleChange = event =>
     this.setState({ [event.target.name]: event.target.value });
 
@@ -66,12 +52,30 @@ class IndividualListing extends Component {
             <MDBRow>
               <MDBCol md="5">
                 <MDBMedia>
-                  <MDBMedia left className="mr-3" href="#">
-                    <MDBMedia
+                  <MDBMedia left className="mr-3">
+                    {/* <MDBMedia
                       object
                       src={this.props.listing.image_url}
                       alt=""
-                    />
+                    /> */}
+                    <div>
+                      <div
+                        style={{
+                          backgroundImage: `url(${
+                            this.props.listing.image_url
+                          })`,
+                          backgroundPosition: "center",
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                          height: "50vh",
+                          width: "30vh"
+                        }}
+                      />
+                      <p />
+                      <p className="text-justify">
+                        {this.props.listing.book.description}
+                      </p>
+                    </div>
                   </MDBMedia>
                 </MDBMedia>
               </MDBCol>
@@ -129,7 +133,7 @@ class IndividualListing extends Component {
                       </div>
                     )}
                   </MDBMedia>
-                  {this.props.listing.book.description}
+                  {/* {this.props.listing.book.description} */}
                 </MDBMedia>
                 {this.state.longAndLat ? (
                   <div>

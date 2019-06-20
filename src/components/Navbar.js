@@ -50,15 +50,6 @@ const Navbar = props => (
         )}
       </MDBNavItem>
       &nbsp; &nbsp; &nbsp;
-      <MDBNavItem>
-        <NavLink
-          to="/about"
-          className={styles.linkFont}
-          activeStyle={{ color: "#f73b5a" }}
-        >
-          <h6>About </h6>
-        </NavLink>
-      </MDBNavItem>
     </MDBNavbarNav>
   </MDBNavbar>
 );

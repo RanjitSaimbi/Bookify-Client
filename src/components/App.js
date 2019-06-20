@@ -32,7 +32,10 @@ class App extends Component {
   };
 
   signout = () => {
-    this.setState({ username: "", myListings: [], myMessages: [] });
+    AppAPI.fetchListings().then(data => {
+      this.setState({ username: "", myListings: data, myMessages: [] });
+    });
+
     localStorage.removeItem("token");
     this.props.history.push("/");
   };
@@ -188,7 +191,7 @@ class App extends Component {
               />
             )}
           />
-          <Route exact path="/about" component={props => <h1>ABOUT</h1>} />
+
           <Route
             exact
             path="/signup"
