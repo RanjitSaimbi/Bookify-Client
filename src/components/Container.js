@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../styles/Container.module.css";
 import CardMounter from "./CardMounter";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 class Container extends Component {
   state = { searchTerm: "" };
@@ -45,7 +46,7 @@ class Container extends Component {
             }}
           >
             <TextField
-              placeholder="Search for books to borrow / buy in your area"
+              placeholder="Search for books to borrow or buy in your area"
               helperText="Search by author, title, genre and listing location"
               color="red"
               margin="normal"
@@ -63,7 +64,9 @@ class Container extends Component {
             <br />
             {this.props.username ? (
               <Link to="/listing/create">
-                <h3>List Book </h3>
+                <Button variant="outlined" color="primary" size="large">
+                  LIST ITEM
+                </Button>
               </Link>
             ) : null}
           </div>

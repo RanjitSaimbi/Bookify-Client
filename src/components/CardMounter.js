@@ -14,7 +14,7 @@ class CardMounter extends Component {
         {this.props.username ? (
           <Link to={`/listing/${this.props.listing.id}`}>
             <MDBCardBody>
-              <h6>
+              <h6 style={{ color: "#FF5D78" }}>
                 {this.props.listing.book.title} by{" "}
                 {this.props.listing.book.author}
               </h6>

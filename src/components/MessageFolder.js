@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import BookMessages from "./BookMessages";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import FolderIcon from "@material-ui/icons/Folder";
 import Button from "@material-ui/core/Button";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { FormGroup, Input } from "reactstrap";
 import CheckButtons from "./CheckButtons";
+import AddIcon from "@material-ui/icons/Add";
+import Fab from "@material-ui/core/Fab";
 
 class MessageFolder extends Component {
   state = {
@@ -56,14 +56,23 @@ class MessageFolder extends Component {
     return (
       <List className={classes.root}>
         <ListItem button onClick={this.handleClick}>
-          <ListItemIcon>
+          {/* <ListItemIcon>
             <FolderIcon />
-          </ListItemIcon>
+          </ListItemIcon> */}
+          <Fab
+            size="small"
+            color="primary"
+            aria-label="Add"
+            className={classes.margin}
+            button
+            onClick={this.toggle}
+          >
+            <AddIcon />
+          </Fab>
+
           <ListItemText primary={this.props.bookMessages[0].book.title} />
+
           <div>
-            <Button onClick={this.toggle} color="primary">
-              New message
-            </Button>
             <Modal
               isOpen={this.state.modal}
               toggle={this.toggle}

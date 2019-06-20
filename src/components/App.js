@@ -35,7 +35,6 @@ class App extends Component {
     AppAPI.fetchListings().then(data => {
       this.setState({ username: "", myListings: data, myMessages: [] });
     });
-
     localStorage.removeItem("token");
     this.props.history.push("/");
   };

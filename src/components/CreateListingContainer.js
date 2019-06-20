@@ -10,6 +10,10 @@ class CreateListingContainer extends Component {
     this.setState({ selectedBook: result });
   };
 
+  componentDidMount() {
+    window.scrollBy(0, -9000);
+  }
+
   render() {
     return (
       <div className={styles.container}>

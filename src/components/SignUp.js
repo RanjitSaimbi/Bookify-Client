@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import UserAPI from "../api/UserApi";
 import AppAPI from "../api/AppApi";
 import styles from "../styles/SignUp.module.css";

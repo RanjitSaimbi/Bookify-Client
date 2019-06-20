@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBMedia } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import AppAPI from "../api/AppApi";
 import styles from "../styles/CreateListing.module.css";
 
@@ -47,15 +47,13 @@ class CreateListing extends Component {
   };
 
   componentWillReceiveProps() {
-    return this.props.selectedBook
+    return this.props.selectedBook &&
+      this.props.selectedBook.volumeInfo.authors !== undefined &&
+      this.props.selectedBook.volumeInfo.description !== undefined
       ? this.setState({
           title: this.props.selectedBook.volumeInfo.title,
-          author: this.props.selectedBook.volumeInfo.authors[0]
-            ? this.props.selectedBook.volumeInfo.authors[0]
-            : null,
-          genre: this.props.selectedBook.volumeInfo.categories[0]
-            ? this.props.selectedBook.volumeInfo.categories[0]
-            : null,
+          author: this.props.selectedBook.volumeInfo.authors[0],
+          genre: this.props.selectedBook.volumeInfo.categories[0],
           description: this.props.selectedBook.volumeInfo.description,
           image_url: this.props.selectedBook.volumeInfo.imageLinks.thumbnail
         })
@@ -224,7 +222,6 @@ class CreateListing extends Component {
                     width: "30vh"
                   }}
                 />
-                {/* <MDBMedia className="mt-3" object src={image_url} alt="" /> */}
               </p>
             </MDBCol>
           </MDBRow>

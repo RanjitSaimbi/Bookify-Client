@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBMedia } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 
 class EditForm extends Component {
   state = {
@@ -173,10 +173,16 @@ class EditForm extends Component {
             <p />
             <p className="h4 text-center mb-4">Image Preview</p>
 
-            <MDBMedia>
-              {" "}
-              <MDBMedia object src={image_url} alt="" />
-            </MDBMedia>
+            <div
+              style={{
+                backgroundImage: `url(${image_url})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                height: "60vh",
+                width: "40vh"
+              }}
+            />
           </MDBCol>
         </MDBRow>
       </MDBContainer>
