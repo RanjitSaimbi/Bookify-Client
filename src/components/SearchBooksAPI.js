@@ -14,7 +14,7 @@ class SearchBooksAPI extends Component {
     fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${
         this.state.search
-      }:keyes&key=AIzaSyBij64ezZmuN4urLgBMDj_b3a25v8x_3r4`
+      }:keyes&key=INSERTKEY`
     )
       .then(resp => resp.json())
       .then(resp => this.setState({ searchResults: resp }));
