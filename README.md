@@ -22,6 +22,10 @@
 - Dependencies:
   - Yarn version v1.16.0
   - Node v11.11.0
+- `git clone https://github.com/RanjitSaimbi/Bookify-Client`
+- `cd client`
+- `yarn install`
+- `yarn run`
 
 ## Screenshots
 
