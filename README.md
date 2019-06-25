@@ -18,7 +18,11 @@
 
 ## Screenshots
 
-![Alt text](public/home.png "Homepage")
+![Homepage](public/home.png "Homepage")
+![Books](public/books_view.png "Books")
+![Individual](public/individual_book_view.png "Individual")
+![Dashboard](public/dashboard.png "Dashboard")
+![Messages](public/messages.png "Messages")
 
 In the project directory, you can run:
 
