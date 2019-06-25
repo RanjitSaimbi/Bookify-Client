@@ -16,6 +16,10 @@
 - Navigational components with React Router
 - Utilisation of Google Books API and Google Maps API
 
+## Screenshots
+
+![Alt text](public/home.png "Homepage")
+
 In the project directory, you can run:
 
 ### `npm start`
