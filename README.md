@@ -5,7 +5,7 @@
 - **API** built with Ruby on Rails, Serializer and JWT Auth.
 - **WebApp** built with React.
 - Written in ES6 (Client).
-- Written in Ruby (API).
+- Written with Ruby on Rails (API).
 
 ## Features
 
@@ -21,8 +21,8 @@
 ![Homepage](public/home.png "Homepage")
 ![Books](public/books_view.png "Books")
 ![Individual](public/individual_book_view.png "Individual")
-![Dashboard](public/dashboard.png "Dashboard")
 ![Messages](public/messages.png "Messages")
+![Dashboard](public/dashboard.png "Dashboard")
 
 In the project directory, you can run:
 
