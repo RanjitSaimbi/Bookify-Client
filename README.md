@@ -20,9 +20,8 @@
 ## Setup
 
 - Dependencies:
-
-* Yarn version v1.16.0
-* Node v11.11.0
+  - Yarn version v1.16.0
+  - Node v11.11.0
 
 ## Screenshots
 
