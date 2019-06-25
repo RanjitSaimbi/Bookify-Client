@@ -1,5 +1,5 @@
 class UserAPI {
-  static baseUrl = "http://localhost:4000";
+  static baseUrl = "https://bookify-api.herokuapp.com/";
   static signUpUrl = UserAPI.baseUrl + "/signup";
   static signInUrl = UserAPI.baseUrl + "/signin";
   static validateUrl = UserAPI.baseUrl + "/validate";

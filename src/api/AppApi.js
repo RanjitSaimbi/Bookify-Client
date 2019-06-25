@@ -1,5 +1,5 @@
 class AppAPI {
-  static baseUrl = "http://localhost:4000";
+  static baseUrl = "https://bookify-api.herokuapp.com/";
   static fetchListingsUrl = AppAPI.baseUrl + "/listings";
   static fetchMyListingsUrl = AppAPI.baseUrl + "/mylistings";
   static destroyListingUrl = AppAPI.baseUrl + "/deletelisting";
