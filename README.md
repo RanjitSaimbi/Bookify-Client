@@ -1,6 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Bookify :blue_book: :closed_book: :orange_book:
 
-## Available Scripts
+**An online platform for bibliophiles to turn their bookshelf into a personal library / bookstore.**
+
+- **API** built with Ruby on Rails, Serializer and JWT Auth.
+- **WebApp** built with React.
+- Written in ES6 (Client).
+- Written in Ruby (API).
+
+## Features
+
+- User authentication using JSON Web Tokens
+- Database migration and seeding
+- Styling using MDBReact with custom CSS
+- Ruby on Rails schema with associations
+- Navigational components with React Router
+- Utilisation of Google Books API and Google Maps API
+-
 
 In the project directory, you can run:
 
